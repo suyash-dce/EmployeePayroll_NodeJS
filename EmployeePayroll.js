@@ -2,12 +2,16 @@ class EmployeePayrollData{
     //properties
     id;
     salary;
+    gender;
+    startDate;
 
     //constructors
-    constructor(id,name,salary){
-        this.id=id;
-        this.name=name;
-        this.salary=salary;
+    constructor(...params){
+        this.id=params[0];
+        this.name=params[1];
+        this.salary=params[2];
+        this.gender=params[3];
+        this.startDate=params[4];
     }
 
     //getter and setter methods
@@ -16,11 +20,17 @@ class EmployeePayrollData{
 
     //toString method
     toString(){
-        return "id="+this.id+" : name="+this.name+" : salary="+this.salary;
+        const options={year:'numeric', month:'long', day:'numeric'};
+        const empDate=this.startDate==undefined ? "undefined" :
+                        this.startDate.toLocaleDateString("en-US", options);
+        return "id="+this.id+" : name="+this.name+" : salary="+this.salary+
+                " : gender="+this.gender+" : Start Date="+empDate;
     }
 }
 
-let employeePayrollData = new EmployeePayrollData(1,"Suyash",30000);
+let employeePayrollData=new EmployeePayrollData(1,"Suyash",30000);
 process.stdout.write(employeePayrollData.toString()+"\n");
 employeePayrollData.name="Harshit";
-process.stdout.write(employeePayrollData.toString());
+process.stdout.write(employeePayrollData.toString()+"\n");
+let employeePayrollData2=new EmployeePayrollData(1,"Terrisa",30000,"F",new Date());
+process.stdout.write(employeePayrollData2.toString());
