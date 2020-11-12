@@ -21,6 +21,21 @@ class EmployeePayrollData{
         if(nameRegex.test(name)) this._name = name;
         else throw 'Name is incorrect';
     }
+    set id(id){
+        let idRegex = RegExp('^[1-9][0-9]*$');
+        if(idRegex.test(id)) this._id = id;
+        else throw 'ID is incorrect';
+    }
+    set gender(gender){
+        let genderRegex = RegExp("^[MF]$");
+        if(genderRegex.test(gender)) this._gender = gender;
+        else throw "Gender is incorrect";
+    }
+    set startDate(startDate){
+        let startDateCompare = dates.compare(startDate,new Date());
+        if(startDateCompare<=0) this._startDate = startDate;
+        else throw 'Start Date is incorrect';
+    }
 
     //toString method
     toString(){
@@ -32,7 +47,7 @@ class EmployeePayrollData{
     }
 }
 
-let employeePayrollData=new EmployeePayrollData(1,"Suyash",30000);
+let employeePayrollData=new EmployeePayrollData(1,"Suyash",30000;
 process.stdout.write(employeePayrollData.toString()+"\n");
 try{
     employeePayrollData.name="Harshit";
@@ -40,5 +55,31 @@ try{
 }catch(exception){
     console.error(exception);
 }
-let employeePayrollData2=new EmployeePayrollData(1,"Terrisa",30000,"F",new Date());
-process.stdout.write(employeePayrollData2.toString());
+
+try{
+    let employeePayrollData2=new EmployeePayrollData(1,"Terrisa",30000,"F",new Date());
+    process.stdout.write(employeePayrollData2.toString()+"\n");
+}catch(exception){
+    console.error(exception);
+}
+
+try{
+    let employeePayrollData3=new EmployeePayrollData(0,"Terrisa",30000,"F",new Date());
+    process.stdout.write(employeePayrollData3.toString()+"\n");
+}catch(exception){
+    console.error(exception);
+}
+
+try{
+    let employeePayrollData4=new EmployeePayrollData(1,"Terrisa",30000,"X",new Date());
+    process.stdout.write(employeePayrollData4.toString()+"\n");
+}catch(exception){
+    console.error(exception);
+}
+
+try{
+    let employeePayrollData5=new EmployeePayrollData(1,"Terrisa",30000,"F",new Date(2024,6,26));
+    process.stdout.write(employeePayrollData5.toString()+"\n");
+}catch(exception){
+    console.error(exception);
+}
